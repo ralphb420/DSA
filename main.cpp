@@ -6,24 +6,40 @@
 #include "include/datastructs.h"
 using namespace std;
 
-int printMenu();
-bool switchMenu(int choice);
+// BLOCK NODE
+struct block {
+    // SIMULATED BLOCK HEADER
+    string hash; // OVERALL HASHED TRANSACTION OF THE BLOCK
+    string timeStamp;
+    string previousHash; //
 
-int main() {
-    bool connection = true;
-    while (!connection) { // WIP
-        try {
-            cout << "Establishing Connection";
-            connection = true;
-        } catch (const exception& e) {
-            cout << "Error: " << e.what() << endl;
-        }
-    }
+    // BLOCK DATA
+    int grant; // "5000"
+    string name; // "Ralph Ivan Bituin"
+}
 
-    bool exitProgram = false;
-    while (!exitProgram) {
-        exitProgram = switchMenu(printMenu());
+
+// ESTABLISH CONNECTION / -1 DEBUG MODE
+bool connection = true;
+
+while (!connection) { // WIP
+    try {
+        cout << "Establishing Connection";
+
+        connection = true;
+
+    } catch (e) {
+        cout << "Error: " << e << endl;
     }
+}
+
+
+// MAIN ENTRY POINT - MENU
+bool exit = false;
+
+while(!exit) {
+    exit = switchMenu(printMenu);
+}
 
     return 0;
 }
@@ -38,14 +54,17 @@ int printMenu() {
     cout << "5: Sort Transaction" << endl;
     cout << "6: Verify Transaction Integrity" << endl;
     cout << "7: Exit Program" << endl;
+    cout << "Choice (1 - 6): ";
+    cin >> choice;
+    return choice;
 
     try {
-        cout << "Choice (1 - 7): ";
+        cout << "Choice (1 - 6): ";
         cin >> choice;
-    } catch (const exception& e) {
-        cout << "Please choose from (1 - 7) only!" << endl;
+        return choice;
+    } catch (e) {
+        cout << "Please choose from (1 - 6) only!" << endl;
     }
-    return choice;
 }
 
 bool switchMenu(int choice) {
@@ -72,4 +91,28 @@ bool switchMenu(int choice) {
     return false;
 };
 
+int main() {
+    // ESTABLISH CONNECTION / -1 DEBUG MODE
+bool connection = true;
+
+while (!connection) { // WIP
+    try {
+        cout << "Establishing Connection";
+
+        connection = true;
+
+    } catch (e) {
+        cout << "Error: " << e << endl;
+    }
+}
+
+
+// MAIN ENTRY POINT - MENU
+bool shouldExit = false;
+
+while(!shouldExit) {
+    shouldExit = switchMenu(printMenu);
+}
+return 0;
+}
 
