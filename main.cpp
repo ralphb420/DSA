@@ -50,24 +50,26 @@ int printMenu() {
 
 bool switchMenu(int choice) {
     switch (choice) {
-        case 1:
+        case 1: processScholarship();
             break;
-        case 2:
+        case 2: showTransactions();
             break;
-        case 3:
+        case 3: showWaitlist();
             break;
-        case 4:
+        case 4: showRemainingBudget();
             break;
-        case 5:
+        case 5: sortTransactions();
             break;
-        case 6:
+        case 6: verifyTransactionIntegrity();
             break;
-        case 7:
+        case 7: 
+            cout << "Exiting ScholarChain. Goodbye!" << endl;
             return true;
         default:
+            cout << "Please choose from (1 - 7) only." << endl;
             break;
     }
     return false;
-}
+};
 
 
