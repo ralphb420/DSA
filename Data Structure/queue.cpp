@@ -2,143 +2,110 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "include/datastructs.h"
+#include "include/main.h"
 using namespace std;
 
-// ─────────────────────────────────────────
-// FORWARD DECLARATION
-// Applicant is defined in priority.cpp
-// Include priority.cpp before queue.cpp
-// ─────────────────────────────────────────
+class DualQueue {
+private:
+    // MAIN QUEUE (FIFO)
+    Applicant* mainFront;
+    Applicant* mainRear;
 
-// ─────────────────────────────────────────
-// NORMAL QUEUE — Standard applicants
-// First-Come, First-Served (FIFO)
-// For applicants who do NOT qualify for
-// the high-priority queue
-// ─────────────────────────────────────────
-struct NormalQueue {
-    Applicant* front;
-    Applicant* rear;
-    int        size;
+    // WAITLIST QUEUE (FIFO)
+    Applicant* waitFront;
+    Applicant* waitRear;
 
-    NormalQueue() : front(nullptr), rear(nullptr), size(0) {}
-
-    // Add applicant to the rear of the queue
-    void enqueue(Applicant* a) {
-        a->next = nullptr;
-        if (!rear) {
-            front = rear = a;
-        } else {
-            rear->next = a;
-            rear       = a;
-        }
-        size++;
-        cout << "[NQ] Enqueued: " << a->name
-             << " | ID: " << a->studentID << "\n";
+public:
+    // CONSTRUCTOR
+    DualQueue() {
+        mainFront = mainRear = nullptr;
+        waitFront = waitRear = nullptr;
     }
 
-    // Remove and return the front applicant (FIFO)
-    Applicant* dequeue() {
-        if (!front) {
-            cout << "[NQ] Normal queue is empty.\n";
-            return nullptr;
+    // ─────────────────────────
+    // MAIN QUEUE OPERATIONS
+    // ─────────────────────────
+
+    void enqueueMain(Applicant* a) {
+        a->next = nullptr;
+
+        if (!mainRear) {
+            mainFront = mainRear = a;
+        } else {
+            mainRear->next = a;
+            mainRear = a;
         }
-        Applicant* temp = front;
-        front = front->next;
-        if (!front) rear = nullptr;
-        size--;
+    }
+
+    Applicant* dequeueMain() {
+        if (!mainFront) return nullptr;
+
+        Applicant* temp = mainFront;
+        mainFront = mainFront->next;
+
+        if (!mainFront) mainRear = nullptr;
+
+        temp->next = nullptr;
         return temp;
     }
 
-    // Peek at the front without removing
-    Applicant* peekFront() {
-        return front;
+    bool isMainEmpty() {
+        return mainFront == nullptr;
     }
 
-    bool isEmpty() { return front == nullptr; }
+    // ─────────────────────────
+    // WAITLIST OPERATIONS
+    // ─────────────────────────
 
-    void display() {
-        cout << "\n=== NORMAL QUEUE (Standard Applicants) ===\n";
-        if (isEmpty()) { cout << "  [empty]\n"; return; }
-        Applicant* curr  = front;
-        int        pos   = 1;
-        while (curr) {
-            cout << "  " << pos++ << ". "
-                 << curr->name << " | ID: " << curr->studentID
-                 << " | GPA: " << curr->gpa
-                 << " | Income: P" << curr->income << "\n";
-            curr = curr->next;
-        }
-        cout << "  Total: " << size << " applicant(s)\n";
-    }
-};
-
-// ─────────────────────────────────────────
-// WAITLIST — Overflow when budget runs out
-// Applicants here are re-evaluated when
-// budget becomes available again (iteration)
-// ─────────────────────────────────────────
-struct Waitlist {
-    Applicant* front;
-    Applicant* rear;
-    int        size;
-
-    Waitlist() : front(nullptr), rear(nullptr), size(0) {}
-
-    void add(Applicant* a) {
+    void enqueueWaitlist(Applicant* a) {
         a->next = nullptr;
-        if (!rear) {
-            front = rear = a;
+
+        if (!waitRear) {
+            waitFront = waitRear = a;
         } else {
-            rear->next = a;
-            rear       = a;
+            waitRear->next = a;
+            waitRear = a;
         }
-        size++;
-        cout << "[WL] Added to waitlist: " << a->name << "\n";
     }
 
-    Applicant* next() {
-        if (!front) return nullptr;
-        Applicant* temp = front;
-        front = front->next;
-        if (!front) rear = nullptr;
-        size--;
+    Applicant* dequeueWaitlist() {
+        if (!waitFront) return nullptr;
+
+        Applicant* temp = waitFront;
+        waitFront = waitFront->next;
+
+        if (!waitFront) waitRear = nullptr;
+
+        temp->next = nullptr;
         return temp;
     }
 
-    // Iterative check: re-process waitlist if budget is available
-    void checkWaitlist(int& remainingBudget, int grantAmount) {
-        cout << "\n=== WAITLIST CHECK ===\n";
-        if (isEmpty()) { cout << "  Waitlist is empty.\n"; return; }
-
-        NormalQueue requeue;
-        while (!isEmpty()) {
-            Applicant* a = next();
-            if (remainingBudget >= grantAmount) {
-                remainingBudget -= grantAmount;
-                cout << "  [APPROVED from waitlist] " << a->name
-                     << " | Remaining budget: P" << remainingBudget << "\n";
-            } else {
-                requeue.enqueue(a);
-                cout << "  [STILL WAITING] " << a->name << "\n";
-            }
-        }
-        // Re-add unprocessed back to waitlist
-        while (!requeue.isEmpty()) add(requeue.dequeue());
+    bool isWaitlistEmpty() {
+        return waitFront == nullptr;
     }
 
-    bool isEmpty() { return front == nullptr; }
+    // ─────────────────────────
+    // DISPLAY (OPTIONAL DEBUG)
+    // ─────────────────────────
 
-    void display() {
-        cout << "\n=== WAITLIST ===\n";
-        if (isEmpty()) { cout << "  [empty]\n"; return; }
-        Applicant* curr = front;
-        int pos = 1;
+    void displayMain() {
+        Applicant* curr = mainFront;
+        cout << "\nMAIN QUEUE:\n";
         while (curr) {
-            cout << "  " << pos++ << ". " << curr->name
-                 << " | ID: " << curr->studentID << "\n";
+            cout << curr->name << " -> ";
             curr = curr->next;
         }
-        cout << "  Total waiting: " << size << "\n";
+        cout << "NULL\n";
+    }
+
+    void displayWaitlist() {
+        Applicant* curr = waitFront;
+        cout << "\nWAITLIST:\n";
+        while (curr) {
+            cout << curr->name << " -> ";
+            curr = curr->next;
+        }
+        cout << "NULL\n";
     }
 };

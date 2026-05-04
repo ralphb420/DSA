@@ -1,46 +1,35 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <exception>
+#include "include/main.h"
+#include "include/datastructs.h"
 using namespace std;
 
-// BLOCK NODE
-struct block {
-    // SIMULATED BLOCK HEADER
-    string hash; // OVERALL HASHED TRANSACTION OF THE BLOCK
-    string timeStamp;
-    string previousHash; //
+int printMenu();
+bool switchMenu(int choice);
 
-    // BLOCK DATA
-    int grant; // "5000"
-    string name; // "Ralph Ivan Bituin"
-}
-
-
-// ESTABLISH CONNECTION / -1 DEBUG MODE
-bool connection = true;
-
-while (!connection) { // WIP
-    try {
-        cout << "Establishing Connection";
-
-        connection = true;
-
-    } catch (e) {
-        cout << "Error: " << e << endl;
+int main() {
+    bool connection = true;
+    while (!connection) { // WIP
+        try {
+            cout << "Establishing Connection";
+            connection = true;
+        } catch (const exception& e) {
+            cout << "Error: " << e.what() << endl;
+        }
     }
+
+    bool exitProgram = false;
+    while (!exitProgram) {
+        exitProgram = switchMenu(printMenu());
+    }
+
+    return 0;
 }
 
-
-// MAIN ENTRY POINT - MENU
-bool exit = false;
-
-while(!exit) {
-    exit = switchMenu(printMenu);
-}
-
-// MENU FUNCTIONS
-int printMenu () {
-    int choice;
+int printMenu() {
+    int choice = 0;
     cout << "ScholarChain Menu:" << endl;
     cout << "1: Process Scholarship" << endl;
     cout << "2: Show Transactions" << endl;
@@ -51,40 +40,34 @@ int printMenu () {
     cout << "7: Exit Program" << endl;
 
     try {
-        cout << "Choice (1 - 6): ";
+        cout << "Choice (1 - 7): ";
         cin >> choice;
-        return choice;
-    } catch (e) {
-        cout << "Please choose from (1 - 6) only!" << endl;
+    } catch (const exception& e) {
+        cout << "Please choose from (1 - 7) only!" << endl;
     }
+    return choice;
 }
 
-bool switchMenu (int choice) {
+bool switchMenu(int choice) {
     switch (choice) {
         case 1:
-
             break;
         case 2:
-
             break;
         case 3:
-
             break;
         case 4:
-
             break;
         case 5:
-
             break;
         case 6:
-
             break;
         case 7:
             return true;
         default:
-
+            break;
     }
-
+    return false;
 }
 
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <functional>
+#include <ctime>
 using namespace std;
 
 // HASHING FUNCTION
@@ -24,5 +25,9 @@ string createHash(string timeStamp, string previousHash, int grant, string name)
     return to_string(hashed);
 }
 
+string getTimeStamp() {
+    time_t now = time(0);
+    return ctime(&now);
+}
 
 // VALIDATE HASH
