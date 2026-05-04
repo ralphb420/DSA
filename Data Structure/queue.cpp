@@ -1,111 +1,136 @@
 // QUEUE
-#pragma once
 #include <iostream>
 #include <string>
-#include "include/datastructs.h"
-#include "include/main.h"
+#include "../include/datastructs.h"
+#include "../include/main.h"
 using namespace std;
 
-class DualQueue {
-private:
-    // MAIN QUEUE (FIFO)
-    Applicant* mainFront;
-    Applicant* mainRear;
+DualQueue::DualQueue()
+    : mainFront(nullptr), mainRear(nullptr),
+      waitFront(nullptr), waitRear(nullptr) {}
 
-    // WAITLIST QUEUE (FIFO)
-    Applicant* waitFront;
-    Applicant* waitRear;
+// ─────────────────────────
+// MAIN QUEUE OPERATIONS
+// ─────────────────────────
 
-public:
-    // CONSTRUCTOR
-    DualQueue() {
-        mainFront = mainRear = nullptr;
-        waitFront = waitRear = nullptr;
+int DualQueue::getQueueBudget() {
+    return queueBudget;
+}
+
+void DualQueue::addBudget(int grant) {
+    queueBudget += grant;
+}
+
+void DualQueue::enqueueMain(Applicant *a)
+{
+    a->next = nullptr;
+
+    if (!mainRear)
+    {
+        mainFront = mainRear = a;
     }
-
-    // ─────────────────────────
-    // MAIN QUEUE OPERATIONS
-    // ─────────────────────────
-
-    void enqueueMain(Applicant* a) {
-        a->next = nullptr;
-
-        if (!mainRear) {
-            mainFront = mainRear = a;
-        } else {
-            mainRear->next = a;
-            mainRear = a;
-        }
+    else
+    {
+        mainRear->next = a;
+        mainRear = a;
     }
+}
 
-    Applicant* dequeueMain() {
-        if (!mainFront) return nullptr;
+Applicant *DualQueue::dequeueMain()
+{
+    if (!mainFront)
+        return nullptr;
 
-        Applicant* temp = mainFront;
-        mainFront = mainFront->next;
+    Applicant *temp = mainFront;
+    mainFront = mainFront->next;
 
-        if (!mainFront) mainRear = nullptr;
+    if (!mainFront)
+        mainRear = nullptr;
 
-        temp->next = nullptr;
-        return temp;
+    temp->next = nullptr;
+    queueBudget -= temp->grant;
+    return temp;
+}
+
+bool DualQueue::isMainEmpty(){
+    return mainFront == nullptr;
+}
+
+// ─────────────────────────
+// WAITLIST OPERATIONS
+// ─────────────────────────
+
+void DualQueue::addWaitlistBudget(int grant) {
+    waitlistBudget += grant;
+}
+
+int DualQueue::getWaitlistBudget() {
+    return waitlistBudget;
+}
+
+void DualQueue::enqueueWaitlist(Applicant *a)
+{
+    a->next = nullptr;
+
+    if (!waitRear)
+    {
+        waitFront = waitRear = a;
     }
-
-    bool isMainEmpty() {
-        return mainFront == nullptr;
+    else
+    {
+        waitRear->next = a;
+        waitRear = a;
     }
+}
 
-    // ─────────────────────────
-    // WAITLIST OPERATIONS
-    // ─────────────────────────
+Applicant *DualQueue::dequeueWaitlist()
+{
+    if (!waitFront)
+        return nullptr;
 
-    void enqueueWaitlist(Applicant* a) {
-        a->next = nullptr;
+    Applicant *temp = waitFront;
+    waitFront = waitFront->next;
 
-        if (!waitRear) {
-            waitFront = waitRear = a;
-        } else {
-            waitRear->next = a;
-            waitRear = a;
-        }
+    if (!waitFront)
+        waitRear = nullptr;
+
+    temp->next = nullptr;
+    waitlistBudget -= temp->grant;
+    return temp;
+}
+
+bool DualQueue::isWaitlistEmpty()
+{
+    return waitFront == nullptr;
+}
+
+
+void DualQueue::displayMain() {
+    Applicant *curr = mainFront;
+    cout << "\nMAIN QUEUE:\n";
+    while (curr)
+    {
+        cout << curr->name << " -> ";
+        curr = curr->next;
     }
+    cout << "NULL\n";
+}
 
-    Applicant* dequeueWaitlist() {
-        if (!waitFront) return nullptr;
+Applicant* DualQueue::getFirst() {
+    return mainFront;
+}
 
-        Applicant* temp = waitFront;
-        waitFront = waitFront->next;
+Applicant* DualQueue::getFirstWaitlist() {
+    return waitFront;
+}
 
-        if (!waitFront) waitRear = nullptr;
-
-        temp->next = nullptr;
-        return temp;
+void DualQueue::displayWaitlist() {
+    Applicant *curr = waitFront;
+    cout << "\nWAITLIST:\n";
+    while (curr)
+    {
+        cout << curr->name << " -> ";
+        curr = curr->next;
     }
-
-    bool isWaitlistEmpty() {
-        return waitFront == nullptr;
-    }
-
-    // ─────────────────────────
-    // DISPLAY (OPTIONAL DEBUG)
-    // ─────────────────────────
-
-    void displayMain() {
-        Applicant* curr = mainFront;
-        cout << "\nMAIN QUEUE:\n";
-        while (curr) {
-            cout << curr->name << " -> ";
-            curr = curr->next;
-        }
-        cout << "NULL\n";
-    }
-
-    void displayWaitlist() {
-        Applicant* curr = waitFront;
-        cout << "\nWAITLIST:\n";
-        while (curr) {
-            cout << curr->name << " -> ";
-            curr = curr->next;
-        }
-        cout << "NULL\n";
-    }
-};
+    cout << "NULL\n";
+}
