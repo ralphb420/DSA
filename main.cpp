@@ -3,6 +3,7 @@
 #include <string>
 #include <exception>
 #include <cctype>
+#include <limits>
 #include "include/main.h"
 #include "include/datastructs.h"
 using namespace std;
@@ -44,9 +45,8 @@ int main()
             if (!(cin >> choice))
             {
                 cin.clear();
-                string invalidInput;
-                cin >> invalidInput;
                 cout << "Invalid input. Please enter a valid integer." << endl;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
             else
             {
