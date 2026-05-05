@@ -2,7 +2,6 @@
 #define DATASTRUCTS_H
 
 #include <string>
-#include "main.h"
 struct Applicant;
 
 // PRIORITY QUEUE
@@ -20,9 +19,8 @@ public:
     Applicant* getFirst();
     PriorityQueue();
     void insert(Applicant* a);
-    void displayQueue(); 
     Applicant* pop();
-    bool isEmpty();
+    bool isEmpty() const;
 };
 
 // DUAL QUEUE
