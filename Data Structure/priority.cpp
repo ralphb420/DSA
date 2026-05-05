@@ -50,6 +50,12 @@ Applicant *PriorityQueue::pop()
     return temp;
 }
 
+<<<<<<< HEAD
+bool PriorityQueue::isEmpty() const
+{
+    return head == nullptr;
+}
+=======
 bool PriorityQueue::isEmpty()
 {
     return head == nullptr;
@@ -65,3 +71,4 @@ void PriorityQueue::displayQueue(){
         curr = curr->next;
     }
 }
+>>>>>>> 2a6721c679ab0131928d43b5847c9fad2ba2f07a
