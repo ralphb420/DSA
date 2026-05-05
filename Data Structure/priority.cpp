@@ -64,5 +64,4 @@ void PriorityQueue::displayQueue(){
               << ", Grant: " << curr->grant << endl;
         curr = curr->next;
     }
-    cout << "NULL\n";
 }

@@ -115,7 +115,6 @@ void DualQueue::displayMain() {
               << ", Grant: " << curr->grant << endl;
         curr = curr->next;
     }
-    cout << "NULL\n";
 }
 
 Applicant* DualQueue::getFirst() {
@@ -136,5 +135,4 @@ void DualQueue::displayWaitlist() {
               << ", Grant: " << curr->grant << endl;
         curr = curr->next;
     }
-    cout << "NULL\n";
 }

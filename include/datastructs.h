@@ -72,6 +72,7 @@ public:
     Applicant* peek();
     bool isEmpty();
     void display();
+    bool validateChain();
 };
 
 string createHash(string timeStamp, string previousHash, int grant, string name);
