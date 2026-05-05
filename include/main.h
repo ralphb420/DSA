@@ -31,7 +31,7 @@ struct Applicant {
         float needScore = max(0.0f, (50000.0f - income) / 50000.0f) * 40.0f;
         float acadScore = (gpa / 4.0f) * 60.0f;
         priority       = (int)(acadScore + needScore);
-        isHighPriority = (gpa >= 3.5f && income <= 20000.0f);
+        isHighPriority = (gpa <= 3.5f && income <= 20000.0f);
     }
 };
 

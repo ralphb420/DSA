@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <functional>
+#include "../include/datastructs.h"
 #include <ctime>
 using namespace std;
 

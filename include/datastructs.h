@@ -1,74 +1,80 @@
 #ifndef DATASTRUCTS_H
 #define DATASTRUCTS_H
 
-#include <iostream>
+#include <string>
 #include "main.h"
-using namespace std;
+struct Applicant;
 
+// PRIORITY QUEUE
 class PriorityQueue {
 private:
     Applicant* head;
+    int queueBudget;
 
 public:
+
+    int PriorityQueue::getQueueBudget();
+    void addBudget(int grant);
+
+
+    Applicant* getFirst();
     PriorityQueue();
-    
     void insert(Applicant* a);
+    void displayQueue(); 
     Applicant* pop();
-    bool isEmpty() const;
+    bool isEmpty();
 };
 
+// DUAL QUEUE
 class DualQueue {
 private:
-    // MAIN QUEUE (FIFO)
     Applicant* mainFront;
     Applicant* mainRear;
-
-    // WAITLIST QUEUE (FIFO)
     Applicant* waitFront;
     Applicant* waitRear;
+    int queueBudget;
+    int waitlistBudget;
 
 public:
-    // CONSTRUCTOR
-    DualQueue() : mainFront(nullptr), mainRear(nullptr), waitFront(nullptr), waitRear(nullptr) {}
+    DualQueue();
 
-    // ─────────────────────────
-    // MAIN QUEUE OPERATIONS
-    // ─────────────────────────
+    int getQueueBudget();
+    void addBudget(int grant);
 
     void enqueueMain(Applicant* a);
     Applicant* dequeueMain();
     bool isMainEmpty();
 
-    // ─────────────────────────
-    // WAITLIST OPERATIONS
-    // ─────────────────────────
+    int getWaitlistBudget();
+    void addWaitlistBudget(int grant);
 
     void enqueueWaitlist(Applicant* a);
     Applicant* dequeueWaitlist();
     bool isWaitlistEmpty();
 
-    // ─────────────────────────
-    // DISPLAY (OPTIONAL DEBUG)
-    // ─────────────────────────
+    Applicant* getFirst();
+    Applicant* getFirstWaitlist();
 
-    void displayMain() const;
-    void displayWaitlist() const;
+    void displayMain();
+    void displayWaitlist();
 };
 
+// STACK
 class BlockchainStack {
 private:
     Applicant* top;
 
 public:
-    BlockchainStack() : top(nullptr) {}
+    BlockchainStack();
 
-    void push(Applicant* block);
+    void push(Applicant* a);
     Applicant* pop();
-    Applicant* peek() const;
-    bool isEmpty() const;
-    void display() const;
+    Applicant* peek();
+    bool isEmpty();
+    void display();
 };
 
+string createHash(string timeStamp, string previousHash, int grant, string name);
 string getTimeStamp();
 
 #endif

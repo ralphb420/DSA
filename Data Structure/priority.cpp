@@ -1,44 +1,68 @@
 // PRIORITY QUEUE
 #include <iostream>
 #include <string>
-#include "include/datastructs.h"
-#include "include/main.h"
+#include "../include/datastructs.h"
+#include "../include/main.h"
 using namespace std;
 
+PriorityQueue::PriorityQueue() : head(nullptr) {}
 
-class PriorityQueue {
-private:
-    Applicant* head;
+int PriorityQueue::getQueueBudget() {
+    return queueBudget;
+}
 
-public:
-    PriorityQueue() : head(nullptr) {}
+void PriorityQueue::addBudget(int grant) {
+    queueBudget += grant;
+}
 
-    void insert(Applicant* a) {
-        if (!head || a->priority > head->priority) {
-            a->next = head;
-            head = a;
-            return;
-        }
+Applicant* PriorityQueue::getFirst() {
+    return head;
+}
 
-        Applicant* curr = head;
-        while (curr->next && curr->next->priority >= a->priority) {
-            curr = curr->next;
-        }
-
-        a->next = curr->next;
-        curr->next = a;
+void PriorityQueue::insert(Applicant *a)
+{
+    if (!head || a->priority > head->priority)
+    {
+        a->next = head;
+        head = a;
+        return;
     }
 
-    Applicant* pop() {
-        if (!head) return nullptr;
-
-        Applicant* temp = head;
-        head = head->next;
-        temp->next = nullptr;
-        return temp;
+    Applicant *curr = head;
+    while (curr->next && curr->next->priority >= a->priority)
+    {
+        curr = curr->next;
     }
 
-    bool isEmpty() {
-        return head == nullptr;
+    a->next = curr->next;
+    curr->next = a;
+}
+
+Applicant *PriorityQueue::pop()
+{
+    if (!head)
+        return nullptr;
+
+    Applicant *temp = head;
+    head = head->next;
+    temp->next = nullptr;
+    queueBudget -= temp->grant;
+    return temp;
+}
+
+bool PriorityQueue::isEmpty()
+{
+    return head == nullptr;
+}
+
+void PriorityQueue::displayQueue(){
+    Applicant *curr = head;
+    cout << "\nPriority Queue:\n";
+    while (curr) {
+        cout << "Name: " << curr->name 
+              << ", Priority: " << curr->priority 
+              << ", Grant: " << curr->grant << endl;
+        curr = curr->next;
     }
-};
+    cout << "NULL\n";
+}
