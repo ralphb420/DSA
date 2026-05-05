@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h1 align = "center"> 🎓ScholarChain </h1>
 <h3 align = "center"> Blockchain-Driven Queueing and Transparent Budget Allocation for Scholarships </h3>
 
@@ -69,9 +68,12 @@ Run the program using:
 │   ├── priority.cpp
 │   └── stack.cpp
 │
-└── 📂 Integrity/
+├── 📂 Integrity/
     ├── hashing.cpp
     └── network.cpp
+└── 📂include
+     ├── networking.h
+     └── datastruct.h
 ```
 
 - `main.cpp` - Entry point of the program; handles user interaction and system flow  
