@@ -50,7 +50,26 @@ Applicant *PriorityQueue::pop()
     return temp;
 }
 
+<<<<<<< HEAD
 bool PriorityQueue::isEmpty() const
 {
     return head == nullptr;
 }
+=======
+bool PriorityQueue::isEmpty()
+{
+    return head == nullptr;
+}
+
+void PriorityQueue::displayQueue(){
+    Applicant *curr = head;
+    cout << "\nPriority Queue:\n";
+    while (curr) {
+        cout << "Name: " << curr->name 
+              << ", Priority: " << curr->priority 
+              << ", Grant: " << curr->grant << endl;
+        curr = curr->next;
+    }
+    cout << "NULL\n";
+}
+>>>>>>> 2a6721c679ab0131928d43b5847c9fad2ba2f07a

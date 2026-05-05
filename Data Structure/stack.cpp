@@ -35,6 +35,7 @@ void BlockchainStack::display() {
     while (curr) {
         cout << "Hash: " << curr->hash << endl;
         cout << "Prev: " << curr->previousHash << endl;
+        cout << "Timestamp: " << curr->timeStamp << endl;
         cout << "Student No.: " << curr->studentID << endl;
         cout << "Grant: " << curr->grant << endl;
         cout << "----------------------\n";

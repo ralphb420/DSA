@@ -2,6 +2,7 @@
     "tasks": [
         {
             "type": "cppbuild",
+<<<<<<< HEAD
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\Users\\Jobine\\Downloads\\winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64msvcrt-13.0.0-r1\\mingw64\\bin\\gcc.exe",
             "args": [
@@ -16,6 +17,29 @@
             },
             "problemMatcher": [
                 "$gcc"
+=======
+            "label": "C/C++: cl.exe build project",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "/I",
+                "include",
+                "/Fe${workspaceFolder}\\main.exe",
+                "${workspaceFolder}\\main.cpp",
+                "${workspaceFolder}\\Data Structure\\priority.cpp",
+                "${workspaceFolder}\\Data Structure\\queue.cpp",
+                "${workspaceFolder}\\Data Structure\\stack.cpp",
+                "${workspaceFolder}\\Integrity\\hashing.cpp",
+                "${workspaceFolder}\\Integrity\\network.cpp"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+>>>>>>> 2a6721c679ab0131928d43b5847c9fad2ba2f07a
             ],
             "group": {
                 "kind": "build",
