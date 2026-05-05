@@ -245,7 +245,7 @@ void pushQueue() {
             queue.dequeueMain();
         }
 
-        cout << "Successfully Pushed Queues to BlockChain." << endl;
+        cout << "\nSuccessfully Pushed Queues to BlockChain." << endl;
     }
 }
 
