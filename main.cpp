@@ -6,12 +6,18 @@
 #include "include/datastructs.h"
 using namespace std;
 
+<<<<<<< HEAD
 // BLOCK NODE
 struct block {
     // SIMULATED BLOCK HEADER
     string hash; // OVERALL HASHED TRANSACTION OF THE BLOCK
     string timeStamp;
     string previousHash; //
+=======
+int printMenu();
+bool switchMenu(int choice);
+int budget;
+>>>>>>> 8d9b10f952cf479b0154c2f5df64e3794f8dff9a
 
     // BLOCK DATA
     int grant; // "5000"
@@ -53,10 +59,15 @@ int printMenu() {
     cout << "4: Show Remaining Budget" << endl;
     cout << "5: Sort Transaction" << endl;
     cout << "6: Verify Transaction Integrity" << endl;
+<<<<<<< HEAD
     cout << "7: Exit Program" << endl;
     cout << "Choice (1 - 6): ";
     cin >> choice;
     return choice;
+=======
+    cout << "7: Add Budget" << endl;
+    cout << "8: Exit Program" << endl;
+>>>>>>> 8d9b10f952cf479b0154c2f5df64e3794f8dff9a
 
     try {
         cout << "Choice (1 - 6): ";
@@ -81,7 +92,9 @@ bool switchMenu(int choice) {
             break;
         case 6: verifyTransactionIntegrity();
             break;
-        case 7: 
+        case 7: addBudget();
+            break;
+        case 8: 
             cout << "Exiting ScholarChain. Goodbye!" << endl;
             return true;
         default:
@@ -91,6 +104,7 @@ bool switchMenu(int choice) {
     return false;
 };
 
+<<<<<<< HEAD
 int main() {
     // ESTABLISH CONNECTION / -1 DEBUG MODE
 bool connection = true;
@@ -115,4 +129,51 @@ while(!shouldExit) {
 }
 return 0;
 }
+=======
+// CASE 1 - PROCESS SCHOLARSHIP
+>>>>>>> 8d9b10f952cf479b0154c2f5df64e3794f8dff9a
 
+void processScholarship() {
+
+}
+
+// CASE 2 - SHOW TRANSACTION BLOCK
+
+void showTransactions() {
+    
+}
+
+// CASE 3 - SHOW WAITLIST
+
+void showWaitlist() {
+    
+}
+
+// CASE 4 - SHOW REMAINING BUDGET
+
+void sortTransactions() {
+    
+}
+
+// CASE 5 - SORT TRANSACTIONS
+
+void showRemainingBudget() {
+    
+}
+
+// CASE 6 VERIFY TRANSACTION INTEGRITY
+
+void verifyTransactionIntegrity() {
+    
+}
+
+// CASE 7 - ADD BUDGET
+void addBudget() {
+    try {
+        cout << "Total Budget: " << budget << endl;
+        cout << "Add Budget: ";
+        cin >> budget;
+    } catch (const exception& e) {
+        cout << "Error: " << e << endl;
+    }
+}
