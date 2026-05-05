@@ -2,7 +2,7 @@
 #define DATASTRUCTS_H
 
 #include <string>
-struct Applicant;
+#include "main.h"
 
 // PRIORITY QUEUE
 class PriorityQueue {

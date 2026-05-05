@@ -28,10 +28,6 @@
                     "ignoreFailures": true
                 }
             ]
-<<<<<<< HEAD
-        }
-        
-=======
         },
         {
             "name": "(gdb) Attach",
@@ -54,7 +50,6 @@
             ]
         }
 
->>>>>>> fc30e6f (Minor changes to main.cpp)
 
     ]
 }
