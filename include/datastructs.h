@@ -12,7 +12,7 @@ private:
 
 public:
 
-    int PriorityQueue::getQueueBudget();
+    int getQueueBudget();
     void addBudget(int grant);
 
 
@@ -21,7 +21,7 @@ public:
     void insert(Applicant* a);
     Applicant* pop();
     bool isEmpty();
-    void PriorityQueue::displayQueue();
+    void displayQueue();
 };
 
 // DUAL QUEUE

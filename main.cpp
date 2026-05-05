@@ -41,7 +41,7 @@ int main()
             cout << "Please set budget before processing!" << endl;
             cout << "Budget: ";
 
-            // Input Error Capture
+            // Input Validation
             if (!(cin >> choice))
             {
                 cin.clear();
@@ -104,7 +104,7 @@ int printMenu()
 }
 
 bool switchMenu(int choice)
-{
+{   
     BlockchainStack sorted;
     switch (choice)
     {
@@ -195,6 +195,9 @@ void processScholarship()
             if (gpa < 1)
             {
                 cout << "GPA must be 1 and above." << endl;
+            } else if (gpa > 4)
+            {
+                cout << "GPA must be 4 and below." << endl;
             } else {
                 break;
             }

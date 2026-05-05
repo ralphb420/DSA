@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h1 align = "center"> 🎓ScholarChain </h1>
 <h3 align = "center"> Blockchain-Driven Queueing and Transparent Budget Allocation for Scholarships </h3>
 
@@ -56,7 +55,7 @@ Run the program using:
 ```bash
 ./dsa
 ```
-
+---
 ## 𑣲⋆｡˚Project Structure
 ```
 📂 DSA/
@@ -69,9 +68,12 @@ Run the program using:
 │   ├── priority.cpp
 │   └── stack.cpp
 │
-└── 📂 Integrity/
-    ├── hashing.cpp
-    └── network.cpp
+├── 📂 Integrity/
+│   ├── hashing.cpp
+│   └── network.cpp
+└── 📂include
+    ├── main.h
+    └── datastructs.h
 ```
 
 - `main.cpp` - Entry point of the program; handles user interaction and system flow  
@@ -86,6 +88,11 @@ Run the program using:
 - `hashing.cpp` - Ensures data integrity using hashing techniques  
 - `network.cpp` - Simulates blockchain network validation/consensus  
 
+### 📁 include
+- `main.h` - contains the applicant structure, applicant information, blockchain-related fields, and automatic priority computation logic
+- `datastructs.h` - defines the custom data structures used in the system such as Priority Queue, Dual Queue, and Blockchain Stack
+
+---
 ## 𑣲⋆｡˚Example Output
 ```
 Welcome Admin!
@@ -116,6 +123,7 @@ Applicant is queued for the normal queue.
 Would you like to process another? (Y/N): 
 ```
 
+---
 ## 𑣲⋆｡˚Contributors
 
 <table>
@@ -137,8 +145,8 @@ Would you like to process another? (Y/N):
 </tr>
 </table>
 
-
+---
 ## 𑣲⋆｡˚Acknowledgement
 <p>
 The team would like to thank Ms. Agdon for her guidance throughout the course until the accomplishment of ScholarChain. Her encouragement and valuable feedback greatly contributed to the development and completion of this system. We also extend our gratitude to our classmates, families, and everyone who supported and inspired us throughout the making of this project.</p>
-=======
+=========

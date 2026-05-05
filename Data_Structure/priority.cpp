@@ -15,10 +15,6 @@ void PriorityQueue::addBudget(int grant) {
     queueBudget += grant;
 }
 
-Applicant* PriorityQueue::getFirst() {
-    return head;
-}
-
 void PriorityQueue::insert(Applicant *a)
 {
     if (!head || a->priority > head->priority)
