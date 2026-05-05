@@ -110,13 +110,9 @@ void DualQueue::displayMain() {
     cout << "\nMAIN QUEUE:\n";
     while (curr)
     {
-<<<<<<< HEAD
-        cout << curr->name << " -> ";
-=======
         cout << "Name: " << curr->name
               << ", Priority: " << curr->priority 
               << ", Grant: " << curr->grant << endl;
->>>>>>> 2a6721c679ab0131928d43b5847c9fad2ba2f07a
         curr = curr->next;
     }
 }
@@ -134,13 +130,9 @@ void DualQueue::displayWaitlist() {
     cout << "\nWAITLIST:\n";
     while (curr)
     {
-<<<<<<< HEAD
-        cout << curr->name << " -> ";
-=======
         cout << "Name: " << curr->name 
               << ", Priority: " << curr->priority 
               << ", Grant: " << curr->grant << endl;
->>>>>>> 2a6721c679ab0131928d43b5847c9fad2ba2f07a
         curr = curr->next;
     }
 }

@@ -20,7 +20,8 @@ public:
     PriorityQueue();
     void insert(Applicant* a);
     Applicant* pop();
-    bool isEmpty() const;
+    bool isEmpty();
+    void PriorityQueue::displayQueue();
 };
 
 // DUAL QUEUE
